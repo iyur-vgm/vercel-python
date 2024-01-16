@@ -7,5 +7,5 @@ class handler(BaseHTTPRequestHandler):
         self.send_header('Content-type','text/plain')
         self.end_headers()
         request = requests('https://rest.fnar.net/global/countries')
-        self.wfile.write('Hello, world!'.encode('utf-8'))
+        self.wfile.write(request.encode('utf-8'))
         return
