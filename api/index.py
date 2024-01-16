@@ -1,13 +1,14 @@
 from http.server import BaseHTTPRequestHandler
-from os.path import join
- 
+from datetime import datetime
+import json
+import random
+
 class handler(BaseHTTPRequestHandler):
- 
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type','text/plain')
-        self.end_headers()
-        with open(join('data', 'file.txt'), 'r') as file:
-          for line in file:
-            self.wfile.write(line.encode())
-        return
+
+  def do_GET(self):
+    json_str=json.dumps({"ランダム値": random.sample(range(10),3)}, ensure_ascii=False)
+    self.send_response(200)
+    self.send_header('Content-type', 'application/json')
+    self.end_headers()
+    self.wfile.write(json_str.encode(encoding='utf_8'))
+    return
