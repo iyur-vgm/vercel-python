@@ -1,1 +1,2 @@
-return "just a test"
+def hello_world():
+    return "Hello World!"
